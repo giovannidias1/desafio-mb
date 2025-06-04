@@ -1,0 +1,91 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light ;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+label {
+  color: #000;
+}
+
+input:not([type="radio"]){
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+input.invalid {
+  border-color: red;
+}
+
+.validation-msg {
+  margin-top: 6px;
+  font-size: 13px;
+  color: red;
+}
+
+.validation-msg .success {
+  color: green;
+  font-weight: bold;
+}
+
+.validation-msg ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.validation-msg li {
+  list-style: disc;
+}
+
+
+.error-msg {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+} 
+
+.btn.btn-primary{
+  color: #fff;
+  background-color: #FF9900;
+}
+
+.btn.btn-secondary{
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
