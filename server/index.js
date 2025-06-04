@@ -1,16 +1,25 @@
-const express = require("express");
-const path = require("path");
-const {
+import express from "express";
+import path from "path";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+import {
   isValidEmail,
   isValidPassword,
   isValidCPF,
   isValidCNPJ,
-} = require("./shared/validations");
+} from "../shared/validations.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(express.json());
+
 app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
 app.get("/", (req, res) => {
@@ -22,6 +31,7 @@ app.get("/registration", (req, res) => {
 });
 
 app.post("/registration", (req, res) => {
+  console.log("BODY:", req.body);
   const {
     email,
     password,

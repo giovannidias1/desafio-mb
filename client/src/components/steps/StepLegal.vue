@@ -1,15 +1,37 @@
 <template>
   <div class="step">
+    <h1 class="step-title">Pessoa Jurídica</h1>
+
     <div class="form-group">
       <label for="razaoSocial">Razão social: </label>
-      <input id="razaoSocial" type="text" v-model="form.razaoSocial" required />
+      <input
+        id="razaoSocial"
+        type="text"
+        v-model="form.razaoSocial"
+        :class="{ invalid: razaoTouched && !form.razaoSocial }"
+        @blur="razaoTouched = true"
+        required
+      />
+      <p v-if="razaoTouched && !form.razaoSocial" class="error-msg">
+        Campo obrigatório
+      </p>
     </div>
 
     <InputCnpj v-model="form.cnpj" @valid="cnpjIsValid = $event" />
 
     <div class="form-group">
       <label for="openingDate">Data de abertura:</label>
-      <input id="openingDate" type="date" v-model="form.openingDate" required />
+      <input
+        id="openingDate"
+        type="date"
+        v-model="form.openingDate"
+        required
+        :class="{ invalid: openingDateTouched && !form.openingDate }"
+        @blur="openingDateTouched = true"
+      />
+      <p v-if="openingDateTouched && !form.openingDate" class="error-msg">
+        Campo obrigatório
+      </p>
     </div>
 
     <InputTel v-model="form.phone" @valid="phoneIsValid = $event" />
@@ -38,6 +60,8 @@ const props = defineProps({
 });
 const emit = defineEmits(["next", "back"]);
 
+const razaoTouched = ref(false);
+const openingDateTouched = ref(false);
 const cnpjIsValid = ref(false);
 const phoneIsValid = ref(false);
 
@@ -56,21 +80,4 @@ const validateAndNext = () => {
 };
 </script>
 
-<style scoped>
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.radio-group {
-  display: flex;
-  gap: 16px;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-</style>
+<style scoped></style>

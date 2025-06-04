@@ -1,0 +1,13 @@
+{
+  "name": "desafio-mb",
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "build:client": "cd client && npm run build",
+    "start:server": "node server/index.js",
+    "start": "npm run build:client && npm run start:server"
+  }
+}

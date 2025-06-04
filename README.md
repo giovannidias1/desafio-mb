@@ -63,6 +63,35 @@ npm run dev
 
 ---
 
+### 🧩 Monorepo
+
+Este projeto utiliza uma estrutura de monorepo simples, com os diretórios `client/` e `server/`. Você pode utilizar scripts definidos no `package.json` raiz para facilitar o processo:
+
+#### Scripts disponíveis:
+
+```json
+"scripts": {
+  "build:client": "cd client && npm run build",
+  "start:server": "node server/index.js",
+  "start": "npm run build:client && npm run start:server"
+}
+```
+
+#### Exemplos de uso:
+
+```bash
+# Build do client
+npm run build:client
+
+# Iniciar apenas o backend
+npm run start:server
+
+# Build do frontend e iniciar o backend
+npm run start
+```
+
+---
+
 ## 🔄 Shared
 
 A pasta `shared` contém funções utilitárias de validação como:

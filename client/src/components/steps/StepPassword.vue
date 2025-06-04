@@ -1,5 +1,7 @@
 <template>
   <div class="step">
+    <h1 class="step-title">Senha de acesso</h1>
+
     <InputPassword v-model="form.password" @valid="passwordIsValid = $event" />
 
     <div class="actions">
@@ -34,16 +36,4 @@ const validateAndNext = () => {
 };
 </script>
 
-<style scoped>
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-</style>
+<style scoped></style>

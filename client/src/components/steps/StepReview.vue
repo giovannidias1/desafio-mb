@@ -1,5 +1,7 @@
 <template>
   <div class="step">
+    <h1 class="step-title">Revise suas informações</h1>
+
     <InputEmail v-model="form.email" @valid="emailIsValid = $event" />
 
     <div class="step" v-if="form.type === 'PJ'">
@@ -9,10 +11,15 @@
           id="razaoSocial"
           type="text"
           v-model="form.razaoSocial"
+          :class="{ invalid: razaoTouched && !form.razaoSocial }"
+          @blur="razaoTouched = true"
           required
         />
+        <p v-if="razaoTouched && !form.razaoSocial" class="error-msg">
+          Campo obrigatório
+        </p>
       </div>
-      <InputCnpj v-model="form.cnpj" @valid="cpfIsValid = $event" />
+      <InputCnpj v-model="form.cnpj" @valid="cnpjIsValid = $event" />
       <div class="form-group">
         <label for="openingDate">Data de abertura:</label>
         <input
@@ -20,19 +27,44 @@
           type="date"
           v-model="form.openingDate"
           required
+          :class="{ invalid: openingDateTouched && !form.openingDate }"
+          @blur="openingDateTouched = true"
         />
+        <p v-if="openingDateTouched && !form.openingDate" class="error-msg">
+          Campo obrigatório
+        </p>
       </div>
     </div>
 
     <div class="step" v-else>
       <div class="form-group">
         <label for="name">Nome: </label>
-        <input id="name" type="text" v-model="form.name" required />
+        <input
+          id="name"
+          type="text"
+          v-model="form.name"
+          required
+          :class="{ invalid: nameTouched && !form.name }"
+          @blur="nameTouched = true"
+        />
+        <p v-if="nameTouched && !form.name" class="error-msg">
+          Campo obrigatório
+        </p>
       </div>
       <InputCpf v-model="form.cpf" @valid="cpfIsValid = $event" />
       <div class="form-group">
         <label for="birthdate">Data de aniversario:</label>
-        <input id="birthdate" type="date" v-model="form.birthdate" required />
+        <input
+          id="birthdate"
+          type="date"
+          v-model="form.birthdate"
+          required
+          :class="{ invalid: birthdateTouched && !form.birthdate }"
+          @blur="birthdateTouched = true"
+        />
+        <p v-if="birthdateTouched && !form.birthdate" class="error-msg">
+          Campo obrigatório
+        </p>
       </div>
     </div>
 
@@ -71,6 +103,10 @@ const props = defineProps({
 });
 const emit = defineEmits(["next", "back"]);
 
+const nameTouched = ref(false);
+const birthdateTouched = ref(false);
+const razaoTouched = ref(false);
+const openingDateTouched = ref(false);
 const cpfIsValid = ref(false);
 const cnpjIsValid = ref(false);
 const phoneIsValid = ref(false);
@@ -105,16 +141,4 @@ const validateAndNext = () => {
 };
 </script>
 
-<style scoped>
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-</style>
+<style scoped></style>

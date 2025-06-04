@@ -1,5 +1,6 @@
 <template>
   <div class="step">
+    <h1 class="step-title">Seja bem vindo(a)</h1>
     <InputEmail v-model="form.email" @valid="emailIsValid = $event" />
 
     <div class="radio-group">
@@ -50,18 +51,8 @@ const validateAndNext = () => {
 </script>
 
 <style scoped>
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .radio-group {
   display: flex;
   gap: 16px;
-}
-
-.actions {
-  margin-top: 16px;
 }
 </style>

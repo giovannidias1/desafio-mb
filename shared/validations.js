@@ -1,4 +1,6 @@
 export function isValidCPF(cpf) {
+  cpf = String(cpf).replace(/\D/g, "");
+
   if (!cpf || cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
 
   let sum = 0;
@@ -20,10 +22,8 @@ export function isValidCPF(cpf) {
   return check2 === parseInt(cpf.charAt(10));
 }
 
-export function isValidCNPJ(cnpj) {
-  if (typeof cnpj !== "string") return false;
-
-  cnpj = cnpj.replace(/\D/g, "");
+export function isValidCNPJ(input) {
+  const cnpj = String(input).replace(/\D/g, "");
 
   if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
 
@@ -43,9 +43,9 @@ export function isValidCNPJ(cnpj) {
     [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
   );
 
-  console.log(cnpj === base + check1 + check2);
-
-  return cnpj === base + check1 + check2;
+  const isValid = cnpj === base + check1 + check2;
+  console.log(isValid);
+  return isValid;
 }
 
 export function isValidEmail(email) {

@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
     <form>
+      <StepCount :current-step="step" :total-steps="4" />
       <component
         :is="currentStepComponent"
         :form="form"
@@ -20,6 +21,7 @@ import StepNatural from "./steps/StepNatural.vue";
 import StepLegal from "./steps/StepLegal.vue";
 import StepPassword from "./steps/StepPassword.vue";
 import StepReview from "./steps/StepReview.vue";
+import StepCount from "./StepCount.vue";
 
 const step = ref(1);
 
@@ -60,13 +62,13 @@ const submit = async () => {
 
     if (!response.ok) {
       const error = await response.json();
-      alert("Erro: " + (error.message || "Erro ao enviar dados"));
+      alert("Erro: " + (error.error || "Erro ao enviar dados"));
       return;
     }
 
     alert("Cadastro realizado com sucesso!");
   } catch (err) {
-    alert("Erro: " + err.message);
+    alert("Erro: " + err.error);
   }
 };
 </script>

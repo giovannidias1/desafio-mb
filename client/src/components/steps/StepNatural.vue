@@ -1,15 +1,37 @@
 <template>
   <div class="step">
+    <h1 class="step-title">Pessoa Fisíca</h1>
+
     <div class="form-group">
       <label for="name">Nome: </label>
-      <input id="name" type="text" v-model="form.name" required />
+      <input
+        id="name"
+        type="text"
+        v-model="form.name"
+        required
+        :class="{ invalid: nameTouched && !form.name }"
+        @blur="nameTouched = true"
+      />
+      <p v-if="nameTouched && !form.name" class="error-msg">
+        Campo obrigatório
+      </p>
     </div>
 
     <InputCpf v-model="form.cpf" @valid="cpfIsValid = $event" />
 
     <div class="form-group">
       <label for="birthdate">Data de aniversário:</label>
-      <input id="birthdate" type="date" v-model="form.birthdate" required />
+      <input
+        id="birthdate"
+        type="date"
+        v-model="form.birthdate"
+        required
+        :class="{ invalid: birthdateTouched && !form.birthdate }"
+        @blur="birthdateTouched = true"
+      />
+      <p v-if="birthdateTouched && !form.birthdate" class="error-msg">
+        Campo obrigatório
+      </p>
     </div>
 
     <InputTel v-model="form.phone" @valid="phoneIsValid = $event" />
@@ -38,6 +60,8 @@ const props = defineProps({
 });
 const emit = defineEmits(["next", "back"]);
 
+const nameTouched = ref(false);
+const birthdateTouched = ref(false);
 const cpfIsValid = ref(false);
 const phoneIsValid = ref(false);
 
@@ -56,21 +80,4 @@ const validateAndNext = () => {
 };
 </script>
 
-<style scoped>
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.radio-group {
-  display: flex;
-  gap: 16px;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-</style>
+<style scoped></style>
